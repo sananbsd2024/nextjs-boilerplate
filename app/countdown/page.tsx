@@ -62,25 +62,28 @@ const CountdownTimerCard = ({
   };
 
   return (
-    <a
-      href={timeLeft > 0 ? link : undefined} // หากเวลาหมด link จะเป็น undefined
-      className={`block ${timeLeft === 0 ? 'pointer-events-none' : ''}`} // ปิดการคลิกเมื่อเวลาหมด
-    >
-      <div
-        className={`p-6 bg-white border border-gray-200 rounded-lg shadow ${
-          timeLeft === 0 ? 'opacity-50' : 'hover:bg-gray-100'
-        } dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`}
-      >
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">{title}</h1>
-          <div className="flex items-center justify-center text-4xl font-mono text-gray-800 mb-4">
-            <FontAwesomeIcon icon={faClock} className="mr-2 text-blue-500" />
-            {timeLeft !== null ? formatTime(timeLeft) : 'Loading...'}
-          </div>
-          {timeLeft === 0 && <p className="text-red-500 font-bold">หมดเวลา!</p>}
-        </div>
+<a
+  href={link} // ลิงก์ยังคงอยู่
+  onClick={(e) => {
+    if (timeLeft === 0) e.preventDefault(); // ป้องกันการคลิกเมื่อหมดเวลา
+  }}
+  className={`block ${timeLeft === 0 ? 'pointer-events-none' : ''}`}
+>
+  <div
+    className={`p-6 bg-white border border-gray-200 rounded-lg shadow ${
+      timeLeft === 0 ? 'opacity-50' : 'hover:bg-gray-100'
+    } dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`}
+  >
+    <div className="text-center">
+      <h1 className="text-2xl font-bold mb-4">{title}</h1>
+      <div className="flex items-center justify-center text-4xl font-mono text-gray-800 mb-4">
+        <FontAwesomeIcon icon={faClock} className="mr-2 text-blue-500" />
+        {timeLeft !== null ? formatTime(timeLeft) : 'Loading...'}
       </div>
-    </a>
+      {timeLeft === 0 && <p className="text-red-500 font-bold">Time's up!</p>}
+    </div>
+  </div>
+</a>
   );
 };
 
