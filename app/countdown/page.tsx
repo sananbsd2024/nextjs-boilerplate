@@ -77,7 +77,7 @@ const CountdownTimerCard = ({
             <FontAwesomeIcon icon={faClock} className="mr-2 text-blue-500" />
             {timeLeft !== null ? formatTime(timeLeft) : 'Loading...'}
           </div>
-          {timeLeft === 0 && <p className="text-red-500 font-bold">Time's up!</p>}
+          {timeLeft === 0 && <p className="text-red-500 font-bold">หมดเวลา!</p>}
         </div>
       </div>
     </a>
